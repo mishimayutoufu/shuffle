@@ -1,0 +1,10 @@
+  <div class="contents row" >
+    <p><%= @name %>さんのコメント一覧</p>
+    <% @shuffles.each do |comment| %>
+      <div >
+        <%= simple_format(tweet.text) %>
+        <span class="users"><%= users.comment %></span>
+      </div>
+    <% end %>
+    <%= paginate(@shuffles) %>
+  </div>

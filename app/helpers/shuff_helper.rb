@@ -1,0 +1,2 @@
+module ShuffHelper
+end

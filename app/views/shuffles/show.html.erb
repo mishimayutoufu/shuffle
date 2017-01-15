@@ -1,0 +1,35 @@
+
+<div class ="contents row">
+  <div class="content_post" style="background-image: url(<%= @food.food_images.first.image %>);">
+   <%= @food.name %>
+
+
+  </div>
+   
+   <%= @food.address %>
+
+
+
+    <div class="comments">   
+      <h4>＜コメント一覧＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+          <p>
+            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.text %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+</div>
+
+<div class="contents row">
+  <%= form_tag('/tweets', method: :post) do %>
+    <h3>
+      コメント
+    </h3>
+    <input placeholder="Email" type="text" name="name">
+    <textarea cols="30" name="text" placeholder="text" rows="10"></textarea>
+    <input type="submit" value="SENT">
+  <% end %>
+</div>
