@@ -16,6 +16,7 @@ class ShufflesController < ApplicationController
         @random =rand(Food.count)
         @food = Food.offset(@random).first
         @comments = @food.comments.includes(:user)
+        @comment = Comment.new
     end
 
 

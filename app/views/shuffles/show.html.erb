@@ -12,11 +12,11 @@
 
     <div class="comments">   
       <h4>＜コメント一覧＞</h4>
-      <% if @comments %>
-        <% @comments.each do |comment| %>
+      <% if @food.comments %>
+        <% @food.comments.each do |comment| %>
           <p>
-            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-            <%= comment.text %>
+            <strong><%= link_to comment.user.email, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.content %>
           </p>
         <% end %>
       <% end %>
@@ -24,12 +24,16 @@
 </div>
 
 <div class="contents row">
-  <%= form_tag('/tweets', method: :post) do %>
+  <%= form_for(@comment) do |f|  %>
     <h3>
       コメント
     </h3>
-    <input placeholder="Email" type="text" name="name">
-    <textarea cols="30" name="text" placeholder="text" rows="10"></textarea>
-    <input type="submit" value="SENT">
+   <!--  <%= f.text_field :content %> -->
+    <!-- <input placeholder="Theme" type="text" > -->
+    <%= f.text_area :content, col:"30", rows:"10" %>
+   <!--  <textarea cols="30" name="text" placeholder="text" rows="10"></textarea> -->
+   <%= f.hidden_field :food_id, value: @food.id %>
+   <%= f.submit "comment" %>
+   <!--  <input type="submit" value="SENT"> -->
   <% end %>
 </div>
